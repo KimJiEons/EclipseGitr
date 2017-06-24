@@ -9,6 +9,9 @@ public class HelloWorld {
 		System.out.println("Git Test");
 		
 		System.out.println("Git Test");System.out.println("Git sdTest");
+		
+		GitTest2 gt = new GitTest2();
+		gt.Printtest();
 
 	}
 
