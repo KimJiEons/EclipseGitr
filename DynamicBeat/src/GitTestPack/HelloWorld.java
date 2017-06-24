@@ -7,6 +7,8 @@ public class HelloWorld {
 		
 		
 		System.out.println("Git Test");
+		
+		System.out.println("Git Test");System.out.println("Git Test");
 
 	}
 
