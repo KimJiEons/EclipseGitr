@@ -23,6 +23,11 @@ public class DynamicBeat extends JFrame {
 	private Image background = new ImageIcon(Main.class.getResource("../images/background.jpg")).getImage();
 	
 	
+	private ImageIcon easyButtonBasicImage = new ImageIcon(Main.class.getResource("../images/easyButtonBasic.png"));
+	private ImageIcon easytButtonEnteredImage = new ImageIcon(Main.class.getResource("../images/easyButtonEntered.png"));
+	private ImageIcon hardButtonBasicImage = new ImageIcon(Main.class.getResource("../images/hardButtonBasic.png"));
+	private ImageIcon hardButtonEnteredImage = new ImageIcon(Main.class.getResource("../images/hardButtonEntered.png"));
+	
 	
 	
 	
@@ -57,6 +62,10 @@ public class DynamicBeat extends JFrame {
 	private JButton quitButton = new JButton(quitButtonBasicImage);
 	private JButton leftButton = new JButton(leftButtonBsicImage);
 	private JButton rightButton = new JButton(rightButtonBasicImage);
+	private JButton easyButton = new JButton(easyButtonBasicImage);
+	private JButton hardButton = new JButton(hardButtonBasicImage);
+
+	
 	
 	
 	
@@ -167,6 +176,8 @@ public class DynamicBeat extends JFrame {
 				background = new ImageIcon(Main.class.getResource("../images/mainBackground.jpg")).getImage();
 				leftButton.setVisible(true);
 				rightButton.setVisible(true);
+				easyButton.setVisible(true);
+				hardButton.setVisible(true);
 				isMainScreen = true;
 
 
@@ -295,6 +306,91 @@ public class DynamicBeat extends JFrame {
 		});
 
 		add(rightButton);
+		
+		
+		easyButton.setVisible(false);
+		easyButton.setBounds(80,580,250,67);
+		easyButton.setBorderPainted(false);
+		easyButton.setContentAreaFilled(false);
+		easyButton.setFocusPainted(false);
+
+		easyButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+
+				easyButton.setIcon(easytButtonEnteredImage);
+				easyButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			//	Music buttonEnteredMusic = new Music("backm1.mp3", false);
+			//	buttonEnteredMusic.start();
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				easyButton.setIcon(easyButtonBasicImage);
+				easyButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			}
+
+			public void mousePressed(MouseEvent e) {
+
+		//		Music buttonEnteredMusic = new Music("backm2.mp3", false);
+		//		buttonEnteredMusic.start();
+       
+				// 게임시작 이벤트
+
+			//왼쪽버튼 이벤트
+				selectRight();
+				
+				//난이도 쉬움 이벤트
+				
+				gameStart(nowSelected, "easy");
+			}
+
+		});
+
+		add(easyButton);
+		
+		
+		hardButton.setVisible(false);
+		hardButton.setBounds(380 ,580,250,67);
+		hardButton.setBorderPainted(false);
+		hardButton.setContentAreaFilled(false);
+		hardButton.setFocusPainted(false);
+
+		hardButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+
+				hardButton.setIcon(hardButtonEnteredImage);
+				hardButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			//	Music buttonEnteredMusic = new Music("backm1.mp3", false);
+			//	buttonEnteredMusic.start();
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				hardButton.setIcon(hardButtonBasicImage);
+				hardButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			}
+
+			public void mousePressed(MouseEvent e) {
+
+		//		Music buttonEnteredMusic = new Music("backm2.mp3", false);
+		//		buttonEnteredMusic.start();
+       
+				// 게임시작 이벤트
+
+			//왼쪽버튼 이벤트
+				selectRight();
+				
+				//난이도 어려움
+				
+				gameStart(nowSelected, "hard");
+				
+			}
+
+		});
+
+		add(hardButton);
 
 		menubar.setBounds(0, 0, 1280, 30);
 		menubar.addMouseListener(new MouseAdapter() {
@@ -368,6 +464,22 @@ public class DynamicBeat extends JFrame {
 		selectTrck(nowSelected);
 	}
 	
+	
+	public void gameStart(int nowSelected,String difficulty)
+	{
+		if(selectedMusic != null)
+			selectedMusic.close();
+		isMainScreen = false;
+		
+		leftButton.setVisible(false);
+		rightButton.setVisible(false);
+		easyButton.setVisible(false);
+		hardButton.setVisible(false);
+		
+		background = new ImageIcon(Main.class.getResource("../images/"+trackList.get(nowSelected).getGameImage()))
+				.getImage();
+		
+	}
 
 }
 
